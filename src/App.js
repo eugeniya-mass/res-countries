@@ -12,6 +12,7 @@ import './App.scss';
 const App = () => {
   const regions = ['Filter by region', 'Africa', 'Americas', 'Asia', 'Europe', 'Oceania']; // regions
   const [arrayCountries, setArrayCountries] = useState([]); // list of countries
+  const [allCountries, setAllCountries] = useState([]);
   const [infoShow, setInfoShow] = useState({modal: false, countryInfo: []}); // show about country
   const [filterRegion, setFilterRegion] = useState({dropdown: false, filterName: ''}); // filter for regions
   const [filterCountry, setFilterCountry] = useState(''); // filter name country
@@ -25,84 +26,51 @@ const App = () => {
   // all list countries
   useEffect(() => {
     async function fetchData() {
-      const res = await fetch(`https://restcountries.eu/rest/v2/all`);
-      res
-      .json()
-      .then(res => {
-          setArrayCountries(res)
-          setError({error: 'not error', show: false})
-      })
+      const res = await fetch(`/data.json`);
+      const data = await res.json();
+      setArrayCountries(data);
+      setAllCountries(data);
+      setError({error: 'not error', show: false});
     }
     fetchData();
   }, []);
 
   // filter country name
-  const changeSearch = async(country) => {
-    let filterSelect = country.target.value;
-    setFilterCountry(filterSelect);
+  const changeSearch = async(e) => {
+      const value = e.target.value.toLowerCase();
+      setFilterCountry(value);
+      setFilterRegion({filterName: '', dropdown: false});
 
-    setFilterRegion({filterName: '', dropdown: false})
-
-    if(filterSelect) {
-      const res = await fetch(`https://restcountries.eu/rest/v2/name/${filterSelect}`);
-
-      if (res.status === 200) {
-        res.json().then(
-          res => setArrayCountries(res),
-          setError({error: 'not error', show: false})
-        )
+      if (!value) {
+          setArrayCountries(allCountries);
+          return;
       }
 
-      if (res.status === 404) {
-        res.json().then(res => setError({error: res.message, show: true}))
-      }
-    } else {
-      const res = await fetch(`https://restcountries.eu/rest/v2/all`);
-      res
-      .json()
-      .then(res => {
-          setArrayCountries(res)
-          setError({error: 'not error', show: false})
-      })
-    }
+      const filtered = allCountries.filter(c =>
+          c.name.toLowerCase().includes(value)
+      );
+
+      setArrayCountries(filtered);
+      setError(filtered.length ? {error: 'not error', show: false} : {error: 'Not found', show: true});
   }
 
 
-  const changeFilter = async (name) => {
+  const changeFilter = (name) => {
     setFilterRegion({filterName: name, dropdown: false});
     setFilterCountry('');
 
-    if(name) {
-      if (name !== 'Filter by region') {
-        const res = await fetch(`https://restcountries.eu/rest/v2/region/${name}`);
-
-        if (res.status === 200) {
-          res.json().then(
-            res => setArrayCountries(res),
-            setError({error: 'not error', show: false})
-          )
-        }
-  
-        if (res.status === 404) {
-          res.json().then(res => setError({error: res.message, show: true}))
-        }
-      } else {
-        const res = await fetch(`https://restcountries.eu/rest/v2/all`);
-        res
-        .json()
-        .then(res => {
-            setArrayCountries(res)
-            setError({error: 'not error', show: false})
-        })
-      } 
+    if (name === 'Filter by region') {
+      setArrayCountries(allCountries);
+      return;
     }
-  }
+
+      const filtered = allCountries.filter(c => c.region === name);
+      setArrayCountries(filtered);
+    };
 
   const openCard = async(name) => {
-    if(name) {
-      const res = await fetch(`https://restcountries.eu/rest/v2/name/${name}`);
-      res.json().then(res => setInfoShow({countryInfo: res, modal: true }));
-    }
+      const country = allCountries.filter(c => c.name === name);
+      setInfoShow({countryInfo: country, modal: true});
   }
 
   const openDropdown = () => {

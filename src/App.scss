@@ -12,6 +12,7 @@ $font-weight-bold: 800;
   font-family: 'Nunito Sans', sans-serif;
   font-size: 14px;
   box-sizing: border-box;
+  min-height: 100vh;
 
   &__box {
     margin: 0 auto;
