@@ -1,0 +1,3 @@
+# https://res-countries.now.sh/
+User-agent: *
+Disallow:

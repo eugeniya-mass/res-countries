@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/res-countries/static/css/main.f00f7020.chunk.css",
+    "main.js": "/res-countries/static/js/main.de56dd50.chunk.js",
+    "main.js.map": "/res-countries/static/js/main.de56dd50.chunk.js.map",
+    "runtime-main.js": "/res-countries/static/js/runtime-main.22940df5.js",
+    "runtime-main.js.map": "/res-countries/static/js/runtime-main.22940df5.js.map",
+    "static/js/2.ea7978a5.chunk.js": "/res-countries/static/js/2.ea7978a5.chunk.js",
+    "static/js/2.ea7978a5.chunk.js.map": "/res-countries/static/js/2.ea7978a5.chunk.js.map",
+    "index.html": "/res-countries/index.html",
+    "precache-manifest.b328763efe951890128e200b2fce0d6a.js": "/res-countries/precache-manifest.b328763efe951890128e200b2fce0d6a.js",
+    "service-worker.js": "/res-countries/service-worker.js",
+    "static/css/main.f00f7020.chunk.css.map": "/res-countries/static/css/main.f00f7020.chunk.css.map",
+    "static/js/2.ea7978a5.chunk.js.LICENSE.txt": "/res-countries/static/js/2.ea7978a5.chunk.js.LICENSE.txt",
+    "static/media/back-white.svg": "/res-countries/static/media/back-white.6859113a.svg",
+    "static/media/App.scss": "/res-countries/static/media/back.a744d422.svg",
+    "static/media/moon-white.svg": "/res-countries/static/media/moon-white.559df9c1.svg",
+    "static/media/moon.svg": "/res-countries/static/media/moon.f067b627.svg",
+    "static/media/search-black.svg": "/res-countries/static/media/search-black.12ec7f05.svg",
+    "static/media/search.svg": "/res-countries/static/media/search.f726cd28.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.22940df5.js",
+    "static/js/2.ea7978a5.chunk.js",
+    "static/css/main.f00f7020.chunk.css",
+    "static/js/main.de56dd50.chunk.js"
+  ]
+}
